@@ -31,7 +31,7 @@ spring:
       max-request-size: 100MB
   kafka:
     enabled: true
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092}
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:29092,localhost:29093,localhost:29094}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -52,9 +52,9 @@ spring:
     topic:
       file-processing: file-processing-topic1
       dlt: file-processing-dlt
-      # 本地单机 Kafka 默认建议 1 分区、1 副本
-      partitions: ${SPRING_KAFKA_TOPIC_PARTITIONS:1}
-      replication-factor: ${SPRING_KAFKA_TOPIC_REPLICATION_FACTOR:1}
+      # 3 节点集群：3 分区、3 副本
+      partitions: ${SPRING_KAFKA_TOPIC_PARTITIONS:3}
+      replication-factor: ${SPRING_KAFKA_TOPIC_REPLICATION_FACTOR:3}
   webflux:
     client:
       max-in-memory-size: 16MB
